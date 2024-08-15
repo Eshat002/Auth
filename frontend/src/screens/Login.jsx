@@ -54,5 +54,5 @@ const Login = () => {
 // const mapStatetoProps =()=> state({
 
 // })
-// export default connect(null, {})(Login);
-export default Login;
+export default connect(null, {})(Login);
+// export default Login;
