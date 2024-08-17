@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { login } from "../actions/auth";
 
-const Login = () => {
+const Login = ({ login }) => {
   const [FormData, setFormData] = useState({
     email: "",
     password: "",
@@ -12,6 +13,7 @@ const Login = () => {
     setFormData({ ...FormData, [e.target.name]: e.target.value });
   const onSubmit = (e) => {
     e.preventDefault();
+    login(email, password);
   };
   return (
     <div className="container mt-5">
@@ -54,5 +56,5 @@ const Login = () => {
 // const mapStatetoProps =()=> state({
 
 // })
-export default connect(null, {})(Login);
+export default connect(null, { login })(Login);
 // export default Login;
