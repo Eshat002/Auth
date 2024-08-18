@@ -40,8 +40,8 @@ const Login = ({ login }) => {
             onChange={(e) => onChange(e)}
           />
         </div>
-        <button className="btn btn-primary" type="submit">
-          Login
+        <button className="btn btn-dark" type="submit">
+          Sign In
         </button>
         <p className="mt-3">
           Don't have a button?<Link to="/signup">Sign Up</Link>
