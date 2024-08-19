@@ -3,8 +3,53 @@ import {
   LOGIN_FAIL,
   USER_LOADED_SUCCESS,
   USER_LOADED_FAIL,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL,
+  LOGOUT,
 } from "./types";
 import axios from "axios";
+
+export const checkAuthenticated = () => async (dispatch) => {
+  const token = localStorage.getItem("access");
+
+  if (token) {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ token });
+
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/jwt/verify/`,
+        body,
+        config
+      );
+
+      if (res.data && res.data.code !== "token_not_valid") {
+        dispatch({
+          type: AUTHENTICATED_SUCCESS,
+        });
+      } else {
+        dispatch({
+          type: AUTHENTICATED_FAIL,
+        });
+      }
+    } catch (error) {
+      console.error("Authentication check failed:", error);
+      dispatch({
+        type: AUTHENTICATED_FAIL,
+      });
+    }
+  } else {
+    dispatch({
+      type: AUTHENTICATED_FAIL,
+    });
+  }
+};
 
 export const load_user = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
@@ -63,4 +108,10 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_FAIL,
     });
   }
+};
+
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
 };
