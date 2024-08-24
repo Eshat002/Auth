@@ -147,6 +147,7 @@ export const signup =
   };
 
 export const verify = (uid, token) => async (dispatch) => {
+  console.log("body", uid, token);
   const config = {
     headers: {
       "Content-Type": "application/json",
