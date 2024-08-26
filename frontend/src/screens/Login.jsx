@@ -48,10 +48,16 @@ const Login = ({ login, isAuthenticated }) => {
           Sign In
         </button>
         <p className="mt-3">
-          Don't have a button?<Link to="/signup">Sign Up</Link>
+          Don't have a button?{" "}
+          <Link className="link-dark link-offset-2" to="/signup">
+            Sign Up
+          </Link>
         </p>
         <p className="mt-3">
-          Forgot password?<Link to="/reset-password">Reset Password</Link>
+          Forgot password?{" "}
+          <Link className="link-dark link-offset-2" to="/reset-password">
+            Reset Password
+          </Link>
         </p>
       </form>
     </div>
