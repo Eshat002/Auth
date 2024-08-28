@@ -75,12 +75,12 @@ const Signup = ({ signup, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
         </div>
-        <button className="btn btn-dark" type="submit">
+        <button className="btn-dark btn link-offset-3" type="submit">
           Sign Up
         </button>
         <p className="mt-3">
           Already have an account ?{" "}
-          <Link className="link-dark link-offset-2" to="/login">
+          <Link className="link-offset-3 text-decoration-none" to="/login">
             Login
           </Link>
         </p>
