@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { signup } from "../actions/auth";
+import axios from "axios";
 
 const Signup = ({ signup, isAuthenticated }) => {
   const [accountCreated, setAccountCreated] = useState(false);
@@ -22,6 +23,15 @@ const Signup = ({ signup, isAuthenticated }) => {
     }
   };
 
+  const continueWithGoogle = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=http://127.0.0.1:8000`
+      );
+      window.location.replace(res.data.authorization_url);
+    } catch (err) {}
+  };
+
   if (accountCreated) {
     return <Navigate to="/login" />;
   }
@@ -33,7 +43,6 @@ const Signup = ({ signup, isAuthenticated }) => {
   return (
     <div className="container mt-5">
       <h1>Sign Up</h1>
-
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
@@ -78,13 +87,19 @@ const Signup = ({ signup, isAuthenticated }) => {
         <button className="btn-dark btn link-offset-3" type="submit">
           Sign Up
         </button>
-        <p className="mt-3">
-          Already have an account ?{" "}
-          <Link className="link-offset-3 text-decoration-none" to="/login">
-            Login
-          </Link>
-        </p>
-      </form>
+      </form>{" "}
+      <button
+        className="btn btn-outline-dark mt-3"
+        onClick={continueWithGoogle}
+      >
+        Continue With Google
+      </button>{" "}
+      <p className="mt-3">
+        Already have an account ?{" "}
+        <Link className="link-offset-3 text-decoration-none" to="/login">
+          Login
+        </Link>
+      </p>
     </div>
   );
 };
