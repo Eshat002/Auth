@@ -7,18 +7,19 @@ import axios from "axios";
 const Signup = ({ signup, isAuthenticated }) => {
   const [accountCreated, setAccountCreated] = useState(false);
   const [FormData, setFormData] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     re_password: "",
   });
-  const { name, email, password, re_password } = FormData;
+  const { first_name, last_name, email, password, re_password } = FormData;
   const onChange = (e) =>
     setFormData({ ...FormData, [e.target.name]: e.target.value });
   const onSubmit = (e) => {
     e.preventDefault();
     if (password === re_password) {
-      signup(name, email, password, re_password);
+      signup(first_name, last_name, email, password, re_password);
       setAccountCreated(true);
     }
   };
@@ -42,15 +43,25 @@ const Signup = ({ signup, isAuthenticated }) => {
 
   return (
     <div className="container mt-5">
-      <h1>Sign Up</h1>
+      <h1 className="mb-4">Sign Up</h1>
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
-            name="name"
-            placeholder="Name"
+            name="first_name"
+            placeholder="Firstname"
             className="form-control mb-3"
-            value={name}
+            value={first_name}
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Lastname"
+            className="form-control mb-3"
+            value={last_name}
             onChange={(e) => onChange(e)}
           />
         </div>
@@ -94,7 +105,7 @@ const Signup = ({ signup, isAuthenticated }) => {
       >
         Continue With Google
       </button>{" "}
-      <p className="mt-3">
+      <p className="mt-3 fw-bold">
         Already have an account ?{" "}
         <Link className="link-offset-3 text-decoration-none" to="/login">
           Login

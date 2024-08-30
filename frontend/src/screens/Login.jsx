@@ -57,29 +57,29 @@ const Login = ({ login, isAuthenticated }) => {
         <button className="btn btn-dark" type="submit">
           Sign In
         </button>
-        <br />
-        <button
-          className="btn btn-outline-dark mt-3"
-          onClick={continueWithGoogle}
-        >
-          Continue With Google
-        </button>
-        <p className="mt-3">
-          Don't have a button?{" "}
-          <Link className="link-offset-2 text-decoration-none" to="/signup">
-            Sign Up
-          </Link>
-        </p>
-        <p className="mt-3">
-          Forgot password?{" "}
-          <Link
-            className="link-offset-2 text-decoration-none"
-            to="/reset-password"
-          >
-            Reset Password
-          </Link>
-        </p>
       </form>
+      <br />
+      <button
+        className="btn btn-outline-dark mt-3"
+        onClick={continueWithGoogle}
+      >
+        Continue With Google
+      </button>
+      <p className="mt-3 fw-bold">
+        Don't have a button?{" "}
+        <Link className="link-offset-2 text-decoration-none" to="/signup">
+          Sign Up
+        </Link>
+      </p>
+      <p className="mt-3 fw-bold">
+        Forgot password?{" "}
+        <Link
+          className="link-offset-2 text-decoration-none"
+          to="/reset-password"
+        >
+          Reset Password
+        </Link>
+      </p>
     </div>
   );
 };

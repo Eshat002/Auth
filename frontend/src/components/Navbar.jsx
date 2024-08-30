@@ -1,9 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../actions/auth";
 
 const Navbar = ({ logout, isAuthenticated }) => {
+  const [navigate, setNavigate] = useState(false);
   const guestLinks = () => (
     <>
       <li className="nav-item">
@@ -21,46 +22,54 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
   const authLinks = () => (
     <li className="nav-item">
-      <a className="nav-link" onClick={logout} href="#!">
+      <a className="nav-link" onClick={logout_user} href="#!">
         Logout
       </a>
     </li>
   );
 
+  const logout_user = () => {
+    logout();
+    setNavigate(true);
+  };
+
   return (
-    <div className="nav-container">
-      <nav
-        className="navbar navbar-expand-lg bg-body-tertiary"
-        data-bs-theme="dark"
-      >
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            Navbar
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
-                  Home
-                </Link>
-              </li>
-              {isAuthenticated ? authLinks() : guestLinks()}
-            </ul>
+    <>
+      <div className="nav-container">
+        <nav
+          className="navbar navbar-expand-lg bg-body-tertiary"
+          data-bs-theme="dark"
+        >
+          <div className="container-fluid">
+            <Link className="navbar-brand" to="/">
+              Navbar
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link active" aria-current="page" to="/">
+                    Home
+                  </Link>
+                </li>
+                {isAuthenticated ? authLinks() : guestLinks()}
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </div>
+        </nav>
+      </div>
+      {navigate ? <Navigate to="/" /> : <></>}
+    </>
   );
 };
 

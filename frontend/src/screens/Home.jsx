@@ -15,7 +15,7 @@ const Home = ({ isAuthenticated, logout }) => {
         <hr className="my-4" />
         <p>Click the Login button to proceed </p>
         {isAuthenticated ? (
-          <Link className="btn btn-dark btn-lg" onClick={logout} role="button">
+          <Link className="btn btn-dark btn-lg" onClick={logout} type="button">
             Logout
           </Link>
         ) : (
