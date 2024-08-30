@@ -21,7 +21,12 @@ const Layout = (props) => {
       props.checkAuthenticated();
       props.load_user();
     }
-  }, [location]);
+  }, [
+    location,
+    props.checkAuthenticated,
+    props.googleAuthenticate,
+    props.load_user,
+  ]);
   return (
     <div>
       <Navbar />

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../actions/auth";
 
 const Navbar = ({ logout, isAuthenticated }) => {
   const [navigate, setNavigate] = useState(false);
+
   const guestLinks = () => (
     <>
       <li className="nav-item">

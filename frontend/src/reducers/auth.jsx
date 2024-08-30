@@ -67,6 +67,8 @@ export default function (state = initialState, action) {
 
     case GOOGLE_AUTH_SUCCESS:
       localStorage.setItem("access", payload.access);
+      localStorage.setItem("refresh", payload.refresh);
+
       return {
         ...state,
         isAuthenticated: true,

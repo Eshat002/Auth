@@ -14,8 +14,10 @@ const Signup = ({ signup, isAuthenticated }) => {
     re_password: "",
   });
   const { first_name, last_name, email, password, re_password } = FormData;
+
   const onChange = (e) =>
     setFormData({ ...FormData, [e.target.name]: e.target.value });
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (password === re_password) {
