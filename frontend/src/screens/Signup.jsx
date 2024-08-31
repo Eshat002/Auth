@@ -29,7 +29,16 @@ const Signup = ({ signup, isAuthenticated }) => {
   const continueWithGoogle = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=http://127.0.0.1:8000`
+        `${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=http://127.0.0.1:8000/google`
+      );
+      window.location.replace(res.data.authorization_url);
+    } catch (err) {}
+  };
+
+  const continueWithFacebook = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/auth/o/facebook/?redirect_uri=http://127.0.0.1:8000/facebook`
       );
       window.location.replace(res.data.authorization_url);
     } catch (err) {}
@@ -107,6 +116,13 @@ const Signup = ({ signup, isAuthenticated }) => {
       >
         Continue With Google
       </button>{" "}
+      <br />
+      <button
+        className="btn btn-outline-dark mt-3"
+        onClick={continueWithFacebook}
+      >
+        Continue With Facebook
+      </button>
       <p className="mt-3 fw-bold">
         Already have an account ?{" "}
         <Link className="link-offset-3 text-decoration-none" to="/login">
