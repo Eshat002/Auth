@@ -9,6 +9,8 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import { Provider } from "react-redux";
 import store from "./store";
+import Facebook from "./screens/Facebook";
+import Google from "./screens/Google";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
+            <Route exact path="/facebook" element={<Facebook />} />
+            <Route exact path="/google" element={<Google />} />
             <Route exact path="/reset-password" element={<ResetPassword />} />
             <Route
               exact
